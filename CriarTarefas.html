@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de tarefas</title>
+    <style>
+        button {
+            margin-left: 10px;
+        }
+        .day {
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            gap: 20px; /* Espaço entre as colunas dos dias */
+        }
+        ul li {
+            margin-bottom: 10px;
+        }
+        .task-list {
+            display: flex;
+            flex-direction: column;
+        }
+        .task-list li {
+            margin-right: 20px;
+            color: white;
+        }
+        .task-completed {
+            color: green;
+        }
+        .task-not-completed {
+            color: red;
+        }
+
+
+        h1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        body {
+            background-color: rgb(39, 39, 39);
+            color: white;
+        }
+
+        /* Estilo do ícone "X" para remover tarefa */
+        .remove-task {
+            cursor: pointer;
+            color: red;
+            font-weight: bold;
+        }
+
+        .remove-task:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Lista de tarefas</h1>
+    <div>
+        <ul>
+            <li class="day">
+                <span>Segunda-feira:</span>
+                <ul id="segunda" class="task-list">
+                    <!-- Botão para adicionar tarefas -->
+                    <li>
+                        <button onclick="adicionarTarefa('segunda')">Adicionar Tarefa</button>
+                    </li>
+                </ul>
+            </li>
+            <li class="day">
+                <span>Terça-feira:</span>
+                <ul id="terca" class="task-list">
+                    <!-- Botão para adicionar tarefas -->
+                    <li>
+                        <button onclick="adicionarTarefa('terca')">Adicionar Tarefa</button>
+                    </li>
+                </ul>
+            </li>
+            <li class="day">
+                <span>Quarta-feira:</span>
+                <ul id="quarta" class="task-list">
+                    <!-- Botão para adicionar tarefas -->
+                    <li>
+                        <button onclick="adicionarTarefa('quarta')">Adicionar Tarefa</button>
+                    </li>
+                </ul>
+            </li>
+            <li class="day">
+                <span>Quinta-feira:</span>
+                <ul id="quinta" class="task-list">
+                    <!-- Botão para adicionar tarefas -->
+                    <li>
+                        <button onclick="adicionarTarefa('quinta')">Adicionar Tarefa</button>
+                    </li>
+                </ul>
+            </li>
+            <li class="day">
+                <span>Sexta-feira:</span>
+                <ul id="sexta" class="task-list">
+                    <!-- Botão para adicionar tarefas -->
+                    <li>
+                        <button onclick="adicionarTarefa('sexta')">Adicionar Tarefa</button>
+                    </li>
+                </ul>
+            </li>
+            <li class="day">
+                <span>Sábado:</span>
+                <ul id="sabado" class="task-list">
+                    <!-- Botão para adicionar tarefas -->
+                    <li>
+                        <button onclick="adicionarTarefa('sabado')">Adicionar Tarefa</button>
+                    </li>
+                </ul>
+            </li>
+            <li class="day">
+                <span>Domingo:</span>
+                <ul id="domingo" class="task-list">
+                    <!-- Botão para adicionar tarefas -->
+                    <li>
+                        <button onclick="adicionarTarefa('domingo')">Adicionar Tarefa</button>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        function adicionarTarefa(diaDaSemana) {
+            const ul = document.getElementById(diaDaSemana);
+            const li = document.createElement("li");
+
+            li.innerHTML = `
+                <input type="checkbox" onchange="tarefaConcluida(this)">
+                <span>Tarefa: </span><input type="text">
+                </span><input type="time">
+                <span class="remove-task" onclick="removerTarefa(this)">X</span>
+            `;
+
+            ul.appendChild(li);
+        }
+
+        function removerTarefa(spanElement) {
+            const li = spanElement.parentElement;
+            const ul = li.parentElement;
+            ul.removeChild(li);
+        }
+
+        function tarefaConcluida(checkbox) {
+            const li = checkbox.parentElement;
+            if (checkbox.checked) {
+                li.classList.remove('task-not-completed');
+                li.classList.add('task-completed');
+            } else {
+                li.classList.remove('task-completed');
+                li.classList.add('task-not-completed');
+            }
+        }
+    </script>
+</body>
+</html>
